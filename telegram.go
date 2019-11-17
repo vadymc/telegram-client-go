@@ -29,10 +29,11 @@ func NewTelegramClient() *TelegramClient {
 	return &tc
 }
 
-func (tc *TelegramClient) SendMessage(text string) {
+func (tc *TelegramClient) SendMessage(appName, text string) {
 	body := request{
 		ChatId: tc.telegramChatID,
-		Text:   text,
+		Text:   fmt.Sprint("*%v*\n%v", appName, text),
+		ParseMode: "Markdown",
 	}
 	jsonStr, err := json.Marshal(body)
 	if err != nil {
@@ -61,8 +62,9 @@ func (tc *TelegramClient) SendMessage(text string) {
 }
 
 type request struct {
-	ChatId string `json:"chat_id"`
-	Text   string `json:"text"`
+	ChatId    string `json:"chat_id"`
+	Text      string `json:"text"`
+	ParseMode string `json:"parse_mode"`
 }
 
 type response struct {
