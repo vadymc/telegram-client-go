@@ -31,8 +31,8 @@ func NewTelegramClient() *TelegramClient {
 
 func (tc *TelegramClient) SendMessage(appName, text string) {
 	body := request{
-		ChatId: tc.telegramChatID,
-		Text:   fmt.Sprintf("*%v*\n%v", appName, text),
+		ChatId:    tc.telegramChatID,
+		Text:      fmt.Sprintf("*%v*\n%v", appName, text),
 		ParseMode: "Markdown",
 	}
 	jsonStr, err := json.Marshal(body)
@@ -57,7 +57,7 @@ func (tc *TelegramClient) SendMessage(appName, text string) {
 	json.Unmarshal(respBody, &r)
 
 	if !r.Ok {
-		log.WithField("text", text).Error("Failed to send to telegrams")
+		log.WithField("text", text).Error("Failed to send to telegram")
 	}
 }
 
