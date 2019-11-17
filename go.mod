@@ -1,4 +1,4 @@
-module github.com/telegram-client-go/v2
+module github.com/vadymc/telegram-client-go/v2
 
 go 1.13
 
