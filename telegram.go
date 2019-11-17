@@ -32,7 +32,7 @@ func NewTelegramClient() *TelegramClient {
 func (tc *TelegramClient) SendMessage(appName, text string) {
 	body := request{
 		ChatId: tc.telegramChatID,
-		Text:   fmt.Sprint("*%v*\n%v", appName, text),
+		Text:   fmt.Sprintf("*%v*\n%v", appName, text),
 		ParseMode: "Markdown",
 	}
 	jsonStr, err := json.Marshal(body)
